@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="generator"
+          content="HTML Tidy for Windows (vers 14 February 2006), see www.w3.org" />
+    <meta content="text/html; charset=us-ascii"
+          http-equiv="content-type" />
+
+    <title>ElectricFlow Plugin for PMD</title>
+    <link rel="stylesheet" href= "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media= "screen" />
+</head>
+
+<body>
+    <div class="help">
+    <h1>PMD</h1>
+    <p>Plugin Version @PLUGIN_VERSION@</p>
+    <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
+
+	
+    <p>July 1, 2015</p>
+	
+    <p>PMD scans Java source code and looks for potential problems
+    like:</p>
+
+    <ul>
+        <li>Possible bugs - empty try/catch/finally/switch
+        statements</li>
+
+        <li>Dead code - unused local variables, parameters and
+        private methods</li>
+
+        <li>Suboptimal code - wasteful String/StringBuffer
+        usage</li>
+
+        <li>Overcomplicated expressions - unnecessary if
+        statements, for loops that could be while loops</li>
+
+        <li>Duplicate code - copied/pasted code means copied/pasted
+        bugs</li>
+    </ul><br />
+     <br />
+     
+
+    <h2>PMD Links</h2>
+
+    <p>More information can be found at
+    <a href="http://pmd.sourceforge.net/">this website</a>.</p>
+
+    <h2>ElectricFlow Integration to PMD</h2>
+
+    <p>This plugin allows you to use PMD to analyze source code,
+    such as the source code root directory or specific
+    modules.<br />
+     Also our postp feature is available to easily detect
+    errors.</p>
+
+    <h2>Integrated Version</h2>
+
+    <p>This plugin was developed and tested against version
+    4.2.5.</p>
+
+    <h1>Plugin Procedures</h1>
+
+    <p>
+        IMPORTANT: For all parameter descriptions below, required
+        parameters are shown in <span class='required'>bold
+        italics</span>.
+    </p>
+
+    <div class="procedure"
+         id="runPMD">
+        <a name='runPMD'
+             id="runPMD"></a> 
+
+        <h3>runPMD</h3>
+
+        <p>The runPMD procedure creates and executes a command line
+        from the parameters you provide in the procedure form.</p>
+
+        <table class="grid">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class='required'>Path to Java</td>
+
+                    <td>Provide the absolute path to the current
+                    java.exe. Default is java, which assumes the
+                    path is properly loaded in the environment.
+                    (Required)</td>
+                </tr>
+
+                <tr>
+                    <td class='required'>Path to PMD</td>
+
+                    <td>Provide the path to the PMD jar that you
+                    want to use. The path can be relative to the
+                    workspace or absolute. (Required)</td>
+                </tr>
+
+                <tr>
+                    <td class='required'>Path of the target to
+                    analyze</td>
+
+                    <td>Provide the path to the analysis target.
+                    The path can be relative to the workspace or
+                    absolute. Example:<br />
+                     E:/emma-2.0.5312-src/emma-2.0.5312/core.
+                    (Required)</td>
+                </tr>
+
+                <tr>
+                    <td class='required'>Report format</td>
+
+                    <td>Select the report output to generate. Note:
+                    If you choose Fancy HTML, you must specify an
+                    XSL stylesheet in the <b>javacommands</b>
+                    field. Example: -xslt C:/style.xsl.
+                    (Required)</td>
+                </tr>
+
+                <tr>
+                    <td>Report filename</td>
+
+                    <td>Specify the name of the task report will be
+                    generated, if not specified, info will printed
+                    to console.(This is the command-line
+                    '-reportfile' option)</td>
+                </tr>
+
+                <tr>
+                    <td>Auxiliar Classpath</td>
+
+                    <td>Provide the path to dependencies needed for
+                    the target.(This is the command-line
+                    '-auxclasspath' option)</td>
+                </tr>
+
+                <tr>
+                    <td class='required'>Rulesets</td>
+
+                    <td>Provide a comma-separated list of the
+                    rulesets to include in your analysis step.
+                    Commonly used rules are: unusedcode,
+                    optimizations, naming, imports, finalizers,
+                    design, controversial, codesize, basic.
+                    (Required)</td>
+                </tr>
+
+                <tr>
+                    <td>Additional commands</td>
+
+                    <td>Provide any custom commands for the PMD
+                    call.</td>
+                </tr>
+
+                <tr>
+                    <td>Working directory</td>
+
+                    <td>Indicate the desired working directory.
+                    Leave blank to use the default workspace.</td>
+                </tr>
+            </tbody>
+        </table><img src="../../plugins/@PLUGIN_KEY@/images/PMD-1.png"
+             alt="Form" />
+    </div>
+
+    <h1>Examples and Use Cases</h1>
+
+    <p>In this example we will see how to use pmd from commander to
+    perform java code analysis.</p>
+
+    <ol>
+        <li>First of all we will need a java project to analyze.
+        for this example we are going to use the google-gson java
+        library, available
+        <a href="http://code.google.com/p/google-gson/source/checkout">
+        here</a></li>
+
+        <li>Once you have downloaded the sources, we are going to
+        create the following structure under the <b>C</b>
+        drive:<br />
+         <img src="../../plugins/@PLUGIN_KEY@/images/Tree.png"
+             alt="Tree" /></li>
+
+        <li>Then we should create a step and fill the parameter
+        form:<br />
+         <img src="../../plugins/@PLUGIN_KEY@/images/PMD-1.png"
+             alt="Form" /></li>
+
+        <li>In the textarea called Rulesets we are going to use one
+        of the most common rulesets: "strings" and "basic".<br />
+         You can find more rulesets at
+        <a href="http://pmd.sourceforge.net/rules/index.html">this
+        website.</a></li>
+
+        <li>Finally it's time to run the procedure and see the
+        results:<br />
+         <img src="../../plugins/@PLUGIN_KEY@/images/PMD-2.png"
+             alt="htmlReport" /></li>
+
+        <li>If you want you can take a look at the log file:<br />
+         <img src="../../plugins/@PLUGIN_KEY@/images/PMD-3.png"
+             alt="log" /></li>
+    </ol>
+
+    <h1>Release Notes</h1>
+	
+	<h2>@PLUGIN_KEY@ 2.0.4</h2>
+		<ul>
+			<li>Renamed ElectricCommander to ElectricFlow.</li>
+		</ul> 
+
+    <h2>@PLUGIN_KEY@-2.0.3</h2>
+
+    <ul>
+        <li>Procedure name(s) were changed in the step picker section</li>
+    </ul>
+    
+    <h2>@PLUGIN_KEY@-2.0.2</h2>
+
+    <ul>
+        <li>XML parameter panels.</li>
+
+        <li>The help page was changed</li>
+    </ul>
+
+    <h2>EC-PMD 1.0.1</h2>
+
+    <ul>
+        <li>Added postp matchers</li>
+
+        <li>Code template applied</li>
+
+        <li>Help page improvements</li>
+    </ul>
+    </div>
+</body>
+</html>

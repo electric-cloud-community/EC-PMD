@@ -1,0 +1,73 @@
+<editor>
+    <help>/commander/pages/@PLUGIN_NAME@/@PLUGIN_KEY@_help?s=Administration&amp;ss=Plugins#runPMD</help>
+    <formElement>
+        <type>entry</type>
+        <label>Path to java:</label>
+        <property>javapath</property>
+        <required>1</required>
+        <value>java</value>
+        <documentation>Provide the absolute path to the current java.exe. Default is java, which assumes the path is properly loaded in the environment.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Path to PMD:</label>
+        <property>pmdpath</property>
+        <required>1</required>
+        <documentation>Provide the path to the PMD jar that you want to use. The path can be relative to the workspace or absolute.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Path of the target to analyze:</label>
+        <property>target</property>
+        <required>1</required>
+        <documentation>Provide the path to the analysis target. The path can be relative to the workspace or absolute. Example: E:/emma-2.0.5312-src/emma-2.0.5312/core</documentation>
+    </formElement>
+    <formElement>
+        <type>select</type>
+        <label>Report format: </label>
+        <property>reportformat</property>
+        <required>1</required>
+        <documentation>Select the report output to generate. Note: If you choose Fancy HTML, you must specify an XSL stylesheet in the <b>javacommands</b> field. Example: -xslt C:/style.xsl.</documentation>
+        <option><name>HTML</name><value>html</value></option>
+        <option><name>Fancy HTML</name><value>nicehtml</value></option>
+        <option><name>XML</name><value>xml</value></option>
+        <option><name>Text</name><value>text</value></option>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Report filename:</label>
+        <property>reportfile</property>
+        <required>0</required>
+        <value></value>
+        <documentation>Specify the name of the task report will be generated, if not specified, info will printed to console</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Auxiliar Classpath:</label>
+        <property>classpath</property>
+        <required>0</required>
+        <documentation>Provide the path to dependencies needed for the target.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Rulesets:</label>
+        <property>rulesets</property>
+        <required>1</required>
+        <documentation>Provide a comma-separated list of the rulesets to include in your analysis step. Commonly used rules are: unusedcode, optimizations, naming, imports, finalizers, design, controversial, codesize, basic.</documentation>
+    </formElement>
+    <formElement>
+        <type>textarea</type>
+        <label>Additional commands:</label>
+        <property>javacommands</property>
+        <required>0</required>
+        <documentation>Provide any custom commands for the PMD call.</documentation>
+    </formElement>
+    <formElement>
+        <type>entry</type>
+        <label>Working directory:</label>
+        <property>workingdir</property>
+        <required>0</required>
+        <value></value>
+        <documentation>Indicate the desired working directory. Leave blank to use the default workspace.</documentation>
+    </formElement>
+</editor>
